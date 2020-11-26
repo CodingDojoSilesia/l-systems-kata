@@ -1,12 +1,12 @@
 export default class LSystem {
-  constructor(axiom, rules) {
-    this.rules = rules;
-    this.state = axiom;
-  }
+    constructor(options) {
+        this.state = options.axiom ?? '';
+        this.rules = options.rules ?? {};
+    }
 
-  iterate() {
-    // todo: calculate the next state
-
-    return this.state;
-  }
+    iterate() {
+        return this.state = this.state.split('').map((character) => {
+            return this.rules[character] ?? character;
+        }).join('');
+    }
 }
